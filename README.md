@@ -1,8 +1,7 @@
 #  Live - Exterminando a lenda do Node.js single-threaded na prática
 
 ## About
-Welcome, this repo is part of my [**youtube video**](https://youtu.be/f7MY2OtI7nA) about Proxies and Reflection
-
+Welcome, this repo is part of my [**youtube video**](https://youtu.be/f7MY2OtI7nA) about Node.js multithreading
 First of all, leave your star 🌟 on this repo.
 
 Access our [**exclusive telegram channel**](https://bit.ly/ErickWendelContentHub) so I'll let you know about all the content I've been producing 
