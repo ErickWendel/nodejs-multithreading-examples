@@ -6,10 +6,35 @@ Is Node.js considered multithreading with worker threads?: https://stackoverflow
 PID=34657
 NUM=`ps M $PID | wc -l` && echo $((NUM-1))
 
-- UV is the one who manages all async operations and threads 
-  
+- Process 
+  - Your program itself
+  - When you create copies of your Node.js program on your infraestructure usually you're creating new processes 
 
-- Child Process 
+- Child Process or subprocesses
+  - They stablish communication channels
+  - Used to create a whole new process with dedicated memory and expensive
   - One process can have many threads
-  - threads are small unities of processing and shares memory and resources 
+  - People used to use child process to offload the bottlenecks from a single process in Node.js 
 
+- Threads
+  - threads are small unities of processing and shares memory and resources 
+  - uses a lot less memory and it lives inside a process 
+  - used to perform CPU intensive tasks
+
+- V8 is the JavaScript interpreter, the VM, who can actually get a JavaScript code and translate it to C++ instances 
+  - this process is usually single threaded 
+  - Node.js used to spin up 4 instances of the VM 
+
+- Lib UV is the one who manages all async operations and threads 
+  - Lib uv also has sincronous tasks that's why it spins up 4 threads by default
+  - acts like an while loop asking for events
+  - it's responsible to create threads, schedule async operations, create timers and more
+
+- Node.js is actually a C++ program who makes an interface between V8 and LibUV
+  - When using C++ you can either use LibUV threads or C++ native threads if you want
+  - But to execute a JavaScript code, you must create an isolate, which is a new independent VM instance to run tasks
+
+- Worker Threads 
+  - it's still expensive because it creates a new V8 instance, a new event loop but still uses less resources 
+  - it's thread safe because it will send events back to the main event loop
+  - it doesn't make sense to spin a thread per request as it'll rely on event loop anyway, that's the main difference to Java and other programming languages
