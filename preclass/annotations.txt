@@ -1,0 +1,15 @@
+https://github.com/nodejs/node/blob/v1.0.0-release/src/node.cc#L3
+https://dev.to/johnjardincodes/increase-node-js-performance-with-libuv-thread-pool-5h10
+https://github.com/bleedingcode/nodejs-performance-optimizations
+Is Node.js considered multithreading with worker threads?: https://stackoverflow.com/a/63225073/4087199
+
+PID=34657
+NUM=`ps M $PID | wc -l` && echo $((NUM-1))
+
+- UV is the one who manages all async operations and threads 
+  
+
+- Child Process 
+  - One process can have many threads
+  - threads are small unities of processing and shares memory and resources 
+
